@@ -14,8 +14,8 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new post_params
-    @post.tags.create(post_params[:tag])
     if @post.save
+      @post.tags.create(post_params[:tags])
       flash[:notice] = "Your post has been successfully create"
       redirect_to posts_path
     else
@@ -32,8 +32,8 @@ class PostsController < ApplicationController
 
   def update
     @post.update(post_params)
-    @post.tags.create(post_params[:tag])
     if @post.save
+      @post.tags.create(post_params[:tags])
       flash[:notice] = @post.title + " has been successfully updated"
       redirect_to post_path(@post)
     else

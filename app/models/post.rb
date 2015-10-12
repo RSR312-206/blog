@@ -5,5 +5,5 @@ class Post < ActiveRecord::Base
 
   has_many :associations, dependent: :destroy
   has_many :tags, through: :associations
-  accepts_nested_attributes_for :associations
+  accepts_nested_attributes_for :tags
 end
