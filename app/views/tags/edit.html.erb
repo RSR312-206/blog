@@ -1,0 +1,9 @@
+<h3>Edit or delete your tags </h3>
+<% @tags.each do |tag| %>
+  <%= form_for tag do |f| %>
+    <%= f.label "tag name:" %>
+    <%= f.text_field :name %>
+    <%= f.submit %>
+  <%= link_to "Delete this tag", tag_path(tag), method: :delete, data: {confirm: "Are you sure?"} %>
+  <% end %>
+<% end %>

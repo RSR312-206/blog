@@ -1,0 +1,17 @@
+<h1>Rachel's Blog</h1>
+
+<div>
+  <% @posts.each do |post| %>
+    <%= link_to post.title, post_path(post) %>
+    <%= post.body %>
+    <%= post.author %>
+  <br>
+  <% end %>
+</div>
+
+<div>
+  <%= link_to "Make a new Post", new_post_path %>
+</div>
+
+<div>
+  <%= link_to "View posts by tag", tags_path %>

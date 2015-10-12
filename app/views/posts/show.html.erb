@@ -1,0 +1,31 @@
+<div 'container text-center'>
+    <div class='row'>
+      <ul class="list-group col-lg-4 col-lg-offset-4">
+        <li class="list-group-item">
+          Title:
+          <span class="badge"><%= @post.title %></span>
+        </li>
+        <li class="list-group-item">
+          Post:
+          <span class="badge"><%= @post.body %></span>
+        </li>
+        <li class="list-group-item">
+          Author:
+          <span class="badge"><%= @post.author %></span>
+        </li>
+        <li class"list-grou-item">
+          Tags:
+          <br><span class="badge">
+            <% @post.tags.each do |tag| %>
+              <%= tag.name %>
+            <% end %>
+          </span>
+        </li>
+       </ul>
+    </div>
+  </div>
+  <%= link_to "Edit this entry", edit_post_path(@post) %>
+
+  <%= link_to "Delete this entry", @post, method: :delete, data: {confirm: "Are you sure?"} %>
+
+  <%= link_to "Go Back to Posts List", posts_path %>
