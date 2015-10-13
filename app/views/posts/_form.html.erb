@@ -12,14 +12,21 @@
   <%= f.text_area :body %><br>
   <%= f.label "Sign your name" %>
   <%= f.text_field :author %><br>
+  <br>
+  <% if @post.persisted? %>
   <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |b| %>
       <%= b.check_box %>
       <%= b.label %>
+      <% end %>
+    <% else %>
+    <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |b| %>
+      <%= b.check_box %>
+      <%= b.label %>
+      <% end %>
+      <%= f.fields_for :tags do |tag| %>
+        <%= tag.label "add new tag" %>
+        <%= tag.text_field :name %>
+    <% end %>
   <% end %>
-  <br>
- <%= f.fields_for @post.tags.build do |builder| %>
-    <%= builder.label "add new tag" %>
-    <%= builder.text_field :name %>
   <%= f.submit text %>
-  <% end %><br>
 <% end %>

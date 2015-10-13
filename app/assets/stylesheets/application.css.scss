@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+// First import  variables
+@import "bootswatch/superhero/variables";
+
+// Then bootstrap itself
+@import "bootstrap";
+
+// And finally bootswatch style itself
+@import "bootswatch/superhero/bootswatch";
+
+// If you want to import your own styles just use
+
+@import "https://bootswatch.com/superhero/_bootswatch.scss"

@@ -15,7 +15,6 @@ class PostsController < ApplicationController
   def create
     @post = Post.new post_params
     if @post.save
-      @post.tags.create(post_params[:tags])
       flash[:notice] = "Your post has been successfully create"
       redirect_to posts_path
     else
@@ -33,7 +32,6 @@ class PostsController < ApplicationController
   def update
     @post.update(post_params)
     if @post.save
-      @post.tags.create(post_params[:tags])
       flash[:notice] = @post.title + " has been successfully updated"
       redirect_to post_path(@post)
     else
@@ -49,10 +47,11 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :body, :author, tag_ids: [], tags: [:name])
+    params.require(:post).permit(:title, :body, :author,  tags_attributes: [:name], tag_ids: [])
   end
 
   def set_post
     @post = Post.find(params[:id])
   end
+
 end
